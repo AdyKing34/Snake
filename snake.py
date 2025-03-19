@@ -112,6 +112,7 @@ class Main:
         self.check_fail()
 
     def draw_elements(self):
+        self.draw_grass()
         self.fruit.draw_fruit()
         self.snake.draw_snake()
         self.draw_score()
@@ -134,6 +135,21 @@ class Main:
         pygame.quit()
         sys.exit()
 
+    def draw_grass(self):
+        grass_color = (167, 209, 61)
+
+        for row in range(cell_number):
+            if row % 2 == 0:
+                for col in range(cell_number):
+                    if col % 2 == 0:
+                        grass_rect = pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size)
+                        pygame.draw.rect(screen, grass_color, grass_rect)
+            else:
+                for col in range(cell_number):
+                    if col % 2 != 0:
+                        grass_rect = pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size)
+                        pygame.draw.rect(screen, grass_color, grass_rect)
+
     def draw_score(self):
         score_text = str(len(self.snake.body) - 3)
         score_surface = game_font.render(score_text, True, (56,74,12))
@@ -147,6 +163,7 @@ class Main:
         pygame.draw.rect(screen, (167, 209, 61), bg_rect)
         screen.blit(score_surface, score_rect)
         screen.blit(banana, banana_rect)
+        pygame.draw.rect(screen, (56,74,12), bg_rect, 1)
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
@@ -184,7 +201,7 @@ while True:
                 if main_game.snake.direction.x != -1:
                     main_game.snake.direction = Vector2(1,0)
 
-    screen.fill((107, 142, 35))
+    screen.fill((175,215,70))
     main_game.draw_elements()
     pygame.display.update()
     clock.tick(60)
