@@ -94,7 +94,7 @@ class Fruit:
 
     def draw_fruit(self):
         fruit_rect = pygame.Rect(int(self.pos.x * cell_size),int(self.pos.y * cell_size), cell_size, cell_size)
-        screen.blit(apple, fruit_rect)
+        screen.blit(banana, fruit_rect)
 
     def randomize(self):
         self.x = random.randint(0, cell_number - 1)
@@ -140,13 +140,13 @@ class Main:
         score_x = int(cell_size * cell_number - 60)
         score_y = int(cell_size * cell_number - 40)
         score_rect = score_surface.get_rect(center = (score_x, score_y))
-        apple_rect = apple.get_rect(midright = (score_rect.left, score_rect.centery))
+        banana_rect = banana.get_rect(midright = (score_rect.left, score_rect.centery))
 
-        bg_rect = pygame.Rect(apple_rect.left, apple_rect.top, apple_rect.width + score_rect.width + 6, apple_rect.height)
+        bg_rect = pygame.Rect(banana_rect.left, banana_rect.top, banana_rect.width + score_rect.width + 6, banana_rect.height)
 
         pygame.draw.rect(screen, (167, 209, 61), bg_rect)
         screen.blit(score_surface, score_rect)
-        screen.blit(apple, apple_rect)
+        screen.blit(banana, banana_rect)
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
@@ -154,7 +154,7 @@ cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))
 clock = pygame.time.Clock()
-apple = pygame.image.load('Graphics/banana.png').convert_alpha()
+banana = pygame.image.load('Graphics/banana.png').convert_alpha()
 game_font = pygame.font.Font('Font/PoetsenOne-Regular.ttf', 25)
 
 screen_update = pygame.USEREVENT
