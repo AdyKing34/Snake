@@ -170,6 +170,8 @@ pygame.init()
 cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))
+pygame.display.set_caption('Snake')
+pygame.display.set_icon(pygame.image.load('Graphics/icon.png'))
 clock = pygame.time.Clock()
 banana = pygame.image.load('Graphics/banana.png').convert_alpha()
 game_font = pygame.font.Font('Font/PoetsenOne-Regular.ttf', 25)
