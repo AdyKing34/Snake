@@ -3,6 +3,8 @@ from pygame.math import Vector2
 
 class Snake:
     def __init__(self):
+        self.tail = None
+        self.head = None
         self.body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
         self.direction = Vector2(1,0)
         self.new_block = False
@@ -72,7 +74,7 @@ class Snake:
         elif tail_relation == Vector2(0,-1): self.tail = self.tail_down
 
     def move_snake(self):
-        if self.new_block == True:
+        if self.new_block:
             body_copy = self.body[:]
             body_copy.insert(0, body_copy[0] + self.direction)
             self.body = body_copy[:]
@@ -90,6 +92,9 @@ class Snake:
 
 class Fruit:
     def __init__(self):
+        self.pos = None
+        self.y = None
+        self.x = None
         self.randomize()
 
     def draw_fruit(self):
@@ -131,11 +136,13 @@ class Main:
             if block == self.snake.body[0]:
                 self.game_over()
 
-    def game_over(self):
+    @staticmethod
+    def game_over():
         pygame.quit()
         sys.exit()
 
-    def draw_grass(self):
+    @staticmethod
+    def draw_grass():
         grass_color = (167, 209, 61)
 
         for row in range(cell_number):
@@ -177,7 +184,7 @@ banana = pygame.image.load('Graphics/banana.png').convert_alpha()
 game_font = pygame.font.Font('Font/PoetsenOne-Regular.ttf', 25)
 
 screen_update = pygame.USEREVENT
-pygame.time.set_timer(screen_update, 150)
+pygame.time.set_timer(screen_update, 140)
 
 main_game = Main()
 
